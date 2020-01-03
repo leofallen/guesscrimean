@@ -13,15 +13,10 @@ const log = (el) => {
   console.log(el);
 };
 
-const getScreen = (n) => {
-  let screen = gameScreens[n].content.querySelector('section').cloneNode(true);
-  return screen;
-};
-
 const appendScreen = (n) => {
   main.innerHTML = '';
   const fragment = document.createDocumentFragment();
-  const element = getScreen(n);
+  const element = gameScreens[n].content.querySelector('section').cloneNode(true);
   fragment.appendChild(element);
   main.appendChild(fragment);
 };
@@ -46,25 +41,6 @@ const screenChange = () => {
   });
 };
 
-const arrowsBlock = `<div class="arrows__wrap">
-<style>
-  .arrows__wrap {
-    position: absolute;
-    top: 135px;
-    left: 50%;
-    margin-left: -56px;
-  }
-  .arrows__btn {
-    background: none;
-    border: 2px solid black;
-    padding: 5px 20px;
-  }
-</style>
-<button class="arrows__btn"><-</button>
-<button class="arrows__btn">-></button>
-</div>`;
-
 screenChange();
 
-main.insertAdjacentHTML("beforeEnd", arrowsBlock);
 

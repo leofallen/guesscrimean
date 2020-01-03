@@ -9,6 +9,7 @@
     "browser-sync": "2.26.x",
     "del": "^5.0.0",
     "gulp": "4.0.x",
+    "gulp-better-rollup": "^4.0.1",
     "gulp-csso": "^3.0.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^6.0.0",
@@ -24,6 +25,7 @@
     "gulp-webp": "^4.0.1",
     "imagemin-mozjpeg": "^8.0.0",
     "posthtml-modules": "^0.4.2",
+    "rollup": "^1.27.14",
     "stylelint": "10.1.x",
     "stylelint-config-htmlacademy": "0.1.x"
   },
@@ -49,5 +51,6 @@
   ],
   "engines": {
     "node": "8.16"
-  }
+  },
+  "dependencies": {}
 }
