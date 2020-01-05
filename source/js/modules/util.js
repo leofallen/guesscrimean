@@ -1,4 +1,3 @@
-export const gameScreens = document.querySelectorAll(`template`);
 export const main = document.querySelector(`.app`);
 
 export const getDomElement = (template) => {

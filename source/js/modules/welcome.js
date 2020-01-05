@@ -12,5 +12,6 @@ const template = `<section class="welcome">
 <p class="welcome__text">Удачи!</p>
 </section>`;
 
+const welcome = getDomElement(template);
 
-export const welcome = getDomElement(template);
+export default welcome;

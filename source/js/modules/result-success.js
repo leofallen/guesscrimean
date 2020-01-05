@@ -1,5 +1,6 @@
 import {getDomElement} from "./util";
 
+
 const template = `<section class="result">
 <div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
 <h2 class="result__title">Вы настоящий меломан!</h2>
@@ -8,4 +9,6 @@ const template = `<section class="result">
 <button class="result__replay" type="button">Сыграть ещё раз</button>
 </section>`;
 
-export const resultSuccess = getDomElement(template);
+const resultSuccess = getDomElement(template);
+
+export default resultSuccess;

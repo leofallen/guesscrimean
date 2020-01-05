@@ -61,4 +61,11 @@ const template = `<section class="game game--artist">
 </section>
 </section>`;
 
-export const gameTwo = getDomElement(template);
+const gameArtist = getDomElement(template);
+const playButton = gameArtist.querySelector(`.track__button`);
+
+playButton.addEventListener(`click`, () => {
+  playButton.classList.toggle(`track__button--pause`);
+});
+
+export default gameArtist;

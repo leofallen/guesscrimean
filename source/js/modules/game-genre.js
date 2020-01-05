@@ -52,7 +52,7 @@ const template = `<section class="game game--genre">
     </div>
 
     <div class="track">
-      <button class="track__button track__button--pause" type="button"></button>
+      <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
         <audio></audio>
       </div>
@@ -73,9 +73,33 @@ const template = `<section class="game game--genre">
       </div>
     </div>
 
-    <button class="game__submit button" type="submit">Ответить</button>
+    <button class="game__submit button" type="submit" disabled>Ответить</button>
   </form>
 </section>
 </section>`;
 
-export const gameOne = getDomElement(template);
+const gameGenre = getDomElement(template);
+const playButtons = gameGenre.querySelectorAll(`.track__button`);
+const inputs = gameGenre.querySelectorAll(`.game__input`);
+
+playButtons.forEach((it) => {
+  it.addEventListener(`click`, (evt) => {
+    evt.target.classList.toggle(`track__button--pause`);
+  });
+});
+
+const answerCheck = () => {
+  const checkedCheckboxses = document.querySelectorAll(`input[type=checkbox]:checked`);
+  const answerButton = document.querySelector(`button[type=submit]`);
+  if (checkedCheckboxses.length > 0) {
+    answerButton.removeAttribute(`disabled`);
+  } else {
+    answerButton.setAttribute(`disabled`, `true`);
+  }
+};
+
+inputs.forEach((it) => {
+  it.addEventListener(`click`, answerCheck);
+});
+
+export default gameGenre;

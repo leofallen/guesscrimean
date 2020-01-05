@@ -14,7 +14,7 @@ const posthtml = require(`gulp-posthtml`);
 const modules = require(`posthtml-modules`);
 const del = require(`del`);
 const mozjpeg = require(`imagemin-mozjpeg`);
-const minify = require(`gulp-minify`);
+// const minify = require(`gulp-minify`);
 const htmlmin = require(`gulp-htmlmin`);
 const rollup = require(`gulp-better-rollup`);
 
@@ -45,22 +45,23 @@ gulp.task(`css`, function () {
     .pipe(server.stream());
 });
 
-gulp.task(`minjs`, function () {
-  return gulp.src([`source/js/main.js`])
-  .pipe(plumber())
-  .pipe(sourcemap.init())
-  .pipe(minify())
-  .pipe(sourcemap.write(``))
-  .pipe(gulp.dest(`build/js`))
-  .pipe(server.stream());
-});
+// gulp.task(`minjs`, function () {
+//   return gulp.src([`source/js/main.js`])
+//   .pipe(plumber())
+//   .pipe(sourcemap.init())
+//   .pipe(minify())
+//   .pipe(sourcemap.write(``))
+//   .pipe(gulp.dest(`build/js`))
+//   .pipe(server.stream());
+// });
 
 gulp.task(`scripts`, function () {
-  return gulp.src(`source/js/modules/index.js`)
-  .pipe(plumber())
-  .pipe(rollup({}, `iife`))
-  .pipe(rename(`main.js`))
-  .pipe(gulp.dest(`source/js`));
+  return gulp.src(`source/js/modules/main.js`)
+    .pipe(plumber())
+    .pipe(sourcemap.init())
+    .pipe(rollup({}, `iife`))
+    .pipe(sourcemap.write(``))
+    .pipe(gulp.dest(`build/js`));
 });
 
 gulp.task(`imagemin`, function () {
@@ -110,7 +111,6 @@ gulp.task(`build`, gulp.series(
     `copy`,
     `css`,
     `scripts`,
-    `minjs`,
     `imgOpt`,
     `html`
 ));
@@ -129,7 +129,7 @@ gulp.task(`server`, function () {
   gulp.watch(`source/img/*.jpg`, gulp.series(`imagemin`, `refresh`));
   gulp.watch(`source/components/*.html`, gulp.series(`html`, `refresh`));
   gulp.watch(`source/*.html`, gulp.series(`html`, `refresh`));
-  gulp.watch(`source/js/modules/**/*.js`, gulp.series(`scripts`, `minjs`, `refresh`));
+  gulp.watch(`source/js/modules/**/*.js`, gulp.series(`scripts`, `refresh`));
 });
 
 gulp.task(`refresh`, function (done) {
