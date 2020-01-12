@@ -1,6 +1,13 @@
 import {getDomElement} from "./util";
 
-const template = `<section class="game game--genre">
+const initialState = {
+  'minutes': 5,
+  'seconds': 0,
+  'mistakes': []
+};
+
+
+const template = (state) => `<section class="game game--genre">
 <header class="game__header">
   <a class="game__back" href="#">
     <span class="visually-hidden">Сыграть ещё раз</span>
@@ -8,21 +15,21 @@ const template = `<section class="game game--genre">
   </a>
 
   <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-    <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(.#blur);
+    <circle class="timer__line" cx="390" cy="390" r="370"
     transform: rotate(-90deg) scaleY(-1);
     transform-origin: center">
   </svg>
 
   <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-    <span class="timer__mins">05</span>
+    <span class="timer__mins">${state.minutes}</span>
     <span class="timer__dots">:</span>
-    <span class="timer__secs">00</span>
+    <span class="timer__secs">${state.seconds}</span>
   </div>
 
   <div class="game__mistakes">
-    <div class="wrong"></div>
-    <div class="wrong"></div>
-    <div class="wrong"></div>
+  ${state.mistakes.map(() =>
+    `<div class="wrong"></div>`
+  ).join(``)}
   </div>
 </header>
 
@@ -78,7 +85,7 @@ const template = `<section class="game game--genre">
 </section>
 </section>`;
 
-const gameGenre = getDomElement(template);
+const gameGenre = getDomElement(template(initialState));
 const playButtons = gameGenre.querySelectorAll(`.track__button`);
 const inputs = gameGenre.querySelectorAll(`.game__input`);
 
@@ -91,7 +98,8 @@ playButtons.forEach((it) => {
 const answerCheck = () => {
   const checkedCheckboxses = document.querySelectorAll(`input[type=checkbox]:checked`);
   const answerButton = document.querySelector(`button[type=submit]`);
-  if (checkedCheckboxses.length > 0) {
+  const isChecked = checkedCheckboxses.length > 0;
+  if (isChecked) {
     answerButton.removeAttribute(`disabled`);
   } else {
     answerButton.setAttribute(`disabled`, `true`);
