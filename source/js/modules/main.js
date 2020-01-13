@@ -1,6 +1,6 @@
 import {screenChange} from "./util";
 import welcome from "./welcome";
-import gameGenre from "./game-genre";
+import {gameGenre, timer} from "./game-genre";
 import gameArtist from "./game-artist";
 import resultSuccess from "./result-success";
 
@@ -13,11 +13,13 @@ const addBackButtonListener = () => {
   });
 };
 
+
 startGameButton.addEventListener(`click`, () => {
   const answer = gameGenre.querySelector(`.game__submit`);
   answer.addEventListener(`click`, onAnswerClick);
   resetCheckboxes();
   screenChange(gameGenre);
+  timer();
   addBackButtonListener();
 });
 

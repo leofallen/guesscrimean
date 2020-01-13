@@ -8,7 +8,7 @@ const template = `<section class="game game--artist">
   </a>
 
   <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-    <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(.#blur);
+    <circle class="timer__line" cx="390" cy="390" r="370"
     transform: rotate(-90deg) scaleY(-1);
     transform-origin: center">
   </svg>

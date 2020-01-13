@@ -1,9 +1,29 @@
 import {getDomElement} from "./util";
 
-const initialState = {
+export const timer = () => {
+  let dasharray = 2325;
+  let dashoffset = 0;
+  let dassSec = 7.75;
+  let interval = setInterval(() => {
+    if (min.textContent === `0` && sec.textContent === `0`) {
+      clearInterval(interval);
+    } else if (sec.textContent === `0`) {
+      sec.textContent = 59;
+      min.textContent--;
+    } else {
+      sec.textContent--;
+      timeLine.style.strokeDasharray = dasharray + dassSec;
+      timeLine.style.strokeDashoffset = dashoffset - dassSec;
+      dasharray += dassSec;
+      dashoffset -= dassSec;
+    }
+  }, 1000);
+};
+
+export const gameState = {
   'minutes': 5,
-  'seconds': 0,
-  'mistakes': []
+  'seconds': 59,
+  'mistakes': [],
 };
 
 
@@ -15,9 +35,8 @@ const template = (state) => `<section class="game game--genre">
   </a>
 
   <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-    <circle class="timer__line" cx="390" cy="390" r="370"
-    transform: rotate(-90deg) scaleY(-1);
-    transform-origin: center">
+    <circle class="timer__line" cx="390" cy="390" r="370" stroke-dasharray="2325"
+    stroke-dashoffset="0">
   </svg>
 
   <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
@@ -85,9 +104,12 @@ const template = (state) => `<section class="game game--genre">
 </section>
 </section>`;
 
-const gameGenre = getDomElement(template(initialState));
+export const gameGenre = getDomElement(template(gameState));
+const sec = gameGenre.querySelector(`.timer__secs`);
+const min = gameGenre.querySelector(`.timer__mins`);
 const playButtons = gameGenre.querySelectorAll(`.track__button`);
 const inputs = gameGenre.querySelectorAll(`.game__input`);
+const timeLine = gameGenre.querySelector(`.timer__line`);
 
 playButtons.forEach((it) => {
   it.addEventListener(`click`, (evt) => {
@@ -109,5 +131,3 @@ const answerCheck = () => {
 inputs.forEach((it) => {
   it.addEventListener(`click`, answerCheck);
 });
-
-export default gameGenre;
