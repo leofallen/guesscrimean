@@ -1,6 +1,7 @@
 import {getDomElement} from "./util";
+import {gameState} from "./game-genre";
 
-const template = `<section class="game game--artist">
+const template = (state) => `<section class="game game--artist">
 <header class="game__header">
   <a class="game__back" href="#">
     <span class="visually-hidden">Сыграть ещё раз</span>
@@ -8,21 +9,20 @@ const template = `<section class="game game--artist">
   </a>
 
   <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-    <circle class="timer__line" cx="390" cy="390" r="370"
-    transform: rotate(-90deg) scaleY(-1);
-    transform-origin: center">
+    <circle class="timer__line" cx="390" cy="390" r="370" stroke-dasharray="2325"
+    stroke-dashoffset="0">
   </svg>
 
   <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-    <span class="timer__mins">05</span>
+    <span class="timer__mins">${state.minutes}</span>
     <span class="timer__dots">:</span>
-    <span class="timer__secs">00</span>
+    <span class="timer__secs">${state.seconds}</span>
   </div>
 
   <div class="game__mistakes">
-    <div class="wrong"></div>
-    <div class="wrong"></div>
-    <div class="wrong"></div>
+  ${state.mistakes.map(() =>
+    `<div class="wrong"></div>`
+  ).join(``)}
   </div>
 </header>
 
@@ -61,7 +61,7 @@ const template = `<section class="game game--artist">
 </section>
 </section>`;
 
-const gameArtist = getDomElement(template);
+const gameArtist = getDomElement(template(gameState));
 const playButton = gameArtist.querySelector(`.track__button`);
 
 playButton.addEventListener(`click`, () => {

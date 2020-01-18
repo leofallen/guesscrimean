@@ -1,6 +1,6 @@
 import {screenChange} from "./util";
 import welcome from "./welcome";
-import {gameGenre, timer} from "./game-genre";
+import {gameGenre, timer, resetTimer} from "./game-genre";
 import gameArtist from "./game-artist";
 import resultSuccess from "./result-success";
 
@@ -9,6 +9,7 @@ const startGameButton = welcome.querySelector(`.welcome__button`);
 const addBackButtonListener = () => {
   const back = document.querySelector(`.game__back`);
   back.addEventListener(`click`, () => {
+    resetTimer();
     screenChange(welcome);
   });
 };
@@ -36,6 +37,7 @@ const onAnswerClick = (evt) => {
   });
 
   replyButton.addEventListener(`click`, () => {
+    resetTimer();
     screenChange(welcome);
   });
 
