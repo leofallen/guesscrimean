@@ -39,6 +39,8 @@ gulp.task(`copy`, function () {
     `source/fonts/**/*.{woff,woff2}`,
     `source/img/*.*`,
     `source/*.ico`,
+    `source/music/*.mp3`,
+    `source/logo/*.*`
   ], {base: `source`})
 
   .pipe(gulp.dest(`build`));

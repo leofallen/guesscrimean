@@ -1,41 +1,35 @@
 import {getDomElement} from "./util";
 
-export const gameState = {
-  'minutes': 4,
-  'seconds': 59,
-  'mistakes': [],
-};
+// let interval = 0;
 
-let interval = 0;
+// export const timer = () => {
+//   let dasharray = 2325;
+//   let dashoffset = 0;
+//   let dashMove = 7.75;
 
-export const timer = () => {
-  let dasharray = 2325;
-  let dashoffset = 0;
-  let dashMove = 7.75;
+//   interval = setInterval(() => {
+//     if (min.textContent === `0` && sec.textContent === `0`) {
+//       clearInterval(interval);
+//     } else if (sec.textContent === `0`) {
+//       gameState.minutes--;
+//       gameState.seconds = 59;
+//     } else {
+//       gameState.seconds--;
+//       timeLine.style.strokeDasharray = dasharray + dashMove;
+//       timeLine.style.strokeDashoffset = dashoffset - dashMove;
+//       dasharray += dashMove;
+//       dashoffset -= dashMove;
+//     }
+//   }, 1000);
+// };
 
-  interval = setInterval(() => {
-    if (min.textContent === `0` && sec.textContent === `0`) {
-      clearInterval(interval);
-    } else if (sec.textContent === `0`) {
-      gameState.minutes--;
-      gameState.seconds = 59;
-    } else {
-      gameState.seconds--;
-      timeLine.style.strokeDasharray = dasharray + dashMove;
-      timeLine.style.strokeDashoffset = dashoffset - dashMove;
-      dasharray += dashMove;
-      dashoffset -= dashMove;
-    }
-  }, 1000);
-};
-
-export const resetTimer = () => {
-  clearInterval(interval);
-  gameState.minutes = 4;
-  gameState.seconds = 59;
-  timeLine.style.strokeDasharray = 2325;
-  timeLine.style.strokeDashoffset = 0;
-};
+// export const resetTimer = () => {
+//   clearInterval(interval);
+//   gameState.minutes = 4;
+//   gameState.seconds = 59;
+//   timeLine.style.strokeDasharray = 2325;
+//   timeLine.style.strokeDashoffset = 0;
+// };
 
 const template = (state) => `<section class="game game--genre">
 <header class="game__header">
@@ -114,30 +108,30 @@ const template = (state) => `<section class="game game--genre">
 </section>
 </section>`;
 
-export const gameGenre = getDomElement(template(gameState));
-const sec = gameGenre.querySelector(`.timer__secs`);
-const min = gameGenre.querySelector(`.timer__mins`);
-const playButtons = gameGenre.querySelectorAll(`.track__button`);
-const inputs = gameGenre.querySelectorAll(`.game__input`);
-const timeLine = gameGenre.querySelector(`.timer__line`);
+// export const gameGenre = getDomElement(template(gameState));
+// const sec = gameGenre.querySelector(`.timer__secs`);
+// const min = gameGenre.querySelector(`.timer__mins`);
+// const playButtons = gameGenre.querySelectorAll(`.track__button`);
+// const inputs = gameGenre.querySelectorAll(`.game__input`);
+// const timeLine = gameGenre.querySelector(`.timer__line`);
 
-playButtons.forEach((it) => {
-  it.addEventListener(`click`, (evt) => {
-    evt.target.classList.toggle(`track__button--pause`);
-  });
-});
+// playButtons.forEach((it) => {
+//   it.addEventListener(`click`, (evt) => {
+//     evt.target.classList.toggle(`track__button--pause`);
+//   });
+// });
 
-const answerCheck = () => {
-  const checkedCheckboxses = document.querySelectorAll(`input[type=checkbox]:checked`);
-  const answerButton = document.querySelector(`button[type=submit]`);
-  const isChecked = checkedCheckboxses.length > 0;
-  if (isChecked) {
-    answerButton.removeAttribute(`disabled`);
-  } else {
-    answerButton.setAttribute(`disabled`, `true`);
-  }
-};
+// const answerCheck = () => {
+//   const checkedCheckboxses = document.querySelectorAll(`input[type=checkbox]:checked`);
+//   const answerButton = document.querySelector(`button[type=submit]`);
+//   const isChecked = checkedCheckboxses.length > 0;
+//   if (isChecked) {
+//     answerButton.removeAttribute(`disabled`);
+//   } else {
+//     answerButton.setAttribute(`disabled`, `true`);
+//   }
+// };
 
-inputs.forEach((it) => {
-  it.addEventListener(`click`, answerCheck);
-});
+// inputs.forEach((it) => {
+//   it.addEventListener(`click`, answerCheck);
+// });

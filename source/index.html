@@ -9,20 +9,7 @@
 <body>
 
   <main class="app">
-    <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute;
-    left: -1200em;">
-      <filter id="blur">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="5"></feGaussianBlur>
-        <feOffset dx="0" dy="0"></feOffset>
-        <feMerge>
-          <feMergeNode></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
-    </svg>
-
-    <section class="main">
-
+    <section class="game">
     </section>
 
   </main>
@@ -59,9 +46,7 @@
       </a>
 
       <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-        <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(.#blur);
-        transform: rotate(-90deg) scaleY(-1);
-        transform-origin: center">
+        <circle class="timer__line" cx="390" cy="390" r="370">
       </svg>
 
       <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
@@ -140,9 +125,7 @@
       </a>
 
       <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-        <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(.#blur);
-        transform: rotate(-90deg) scaleY(-1);
-        transform-origin: center">
+        <circle class="timer__line" cx="390" cy="390" r="370">
       </svg>
 
       <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
