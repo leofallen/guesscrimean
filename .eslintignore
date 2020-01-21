@@ -1,0 +1,4 @@
+*.html
+build/
+source/js/main.js
+node_modules/
