@@ -1,44 +1,75 @@
-export default [
+
+const crimean = [
   {
-    artist: `Kevin MacLeod`,
-    name: `Long Stroll`,
-    image: `https://yt3.ggpht.com/-fkDeGauT7Co/AAAAAAAAAAI/AAAAAAAAAAA/dkF5ZKkrxRo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=91624fdc22fc54ed`,
-    genre: `Jazz`
+    artist: `48 часов`,
+    name: `Есть-что-то-важнее`,
+    image: `./logo/48.jpg`,
+    src: `./music/48.mp3`,
+    genre: `punk-rock`
   },
   {
-    artist: `Jingle Punks`,
-    name: `In the Land of Rhinoplasty`,
-    image: `https://i.vimeocdn.com/portrait/992615_300x300`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=dc3b4dc549becd6b`,
-    genre: `Rock`
+    artist: `Step By Step`,
+    name: `Из-за-баб`,
+    image: `./logo/sbs.jpg`,
+    src: `./music/sbs.mp3`,
+    genre: `pop-punk`
   },
   {
-    artist: `Audionautix`,
-    name: `Travel Light`,
-    image: `http://4.bp.blogspot.com/-kft9qu5ET6U/VPFUBi9W-MI/AAAAAAAACYM/UxXilXKYwOc/s1600/audionautix%2BHalf%2BSize.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=a127d9b7de8a17cf`,
-    genre: `Country`
+    artist: `Dirty Trio`,
+    name: `В-лако-красочных-туфлях`,
+    image: `./logo/dt.jpg`,
+    src: `./music/dt.mp3`,
+    genre: `Спид-рок`
   },
   {
-    artist: `Riot`,
-    name: `	Level Plane`,
-    image: `https://i.ytimg.com/vi/jzgM3m8Vp1k/maxresdefault.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=dfb828f40096184c`,
-    genre: `R&B`
+    artist: `Park 17`,
+    name: `Милая-девочка`,
+    image: `./logo/p17.jpg`,
+    src: `./music/p17.mp3`,
+    genre: `lofi_indi`
   },
   {
-    artist: `Jingle Punks`,
-    name: `Lucky Day`,
-    image: `https://i.vimeocdn.com/portrait/992615_300x300`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=bcbe5be936a32fb1`,
-    genre: `Pop`
+    artist: `Вне правил`,
+    name: `В-каждом-из-нас`,
+    image: `./logo/vp.jpg`,
+    src: `./music/vp.mp3`,
+    genre: `grunge-punk`
   },
   {
-    artist: `Quincas Moreira`,
-    name: `Firefly`,
-    image: `http://www.atribuna.com.br/fileadmin/_processed_/csm_Quincas-Moreira-Foto-Divulgacao_76d1a8b00e.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=79100e44c826e2f7`,
-    genre: `Electronic`
-  }
+    artist: `МНДРГР`,
+    name: `Дыхание-вселенной`,
+    image: `./logo/mndrgr.jpg`,
+    src: `./music/mndrgr.mp3`,
+    genre: `ЮБК-панк`
+  },
+  {
+    artist: `Эдi`,
+    name: `Грифон`,
+    image: `./logo/edi.jpg`,
+    src: `./music/edi.mp3`,
+    genre: `крымский_инди-поп`
+  },
+  {
+    artist: `Море ясности`,
+    name: `Беспокойство`,
+    image: `./logo/mya.jpg`,
+    src: `./music/mya.mp3`,
+    genre: `post-punk`
+  },
+  {
+    artist: `Роберто счастлив`,
+    name: `Вакуум`,
+    image: `./logo/rs.jpg`,
+    src: `./music/rs.mp3`,
+    genre: `synth-indie`
+  },
+  {
+    artist: `Акульт`,
+    name: `Революция-сознания`,
+    image: `./logo/acult.jpg`,
+    src: `./music/acult.mp3`,
+    genre: `hip-hop`
+  },
 ];
+
+export default crimean;
