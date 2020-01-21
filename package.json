@@ -7,6 +7,8 @@
     "@htmlacademy/editorconfig-cli": "1.x",
     "autoprefixer": "9.5.x",
     "browser-sync": "2.26.x",
+    "chai": "4.2.0",
+    "css-mqpacker": "^7.0.0",
     "del": "^5.0.0",
     "eslint": "^6.8.0",
     "eslint-config-htmlacademy": "^0.5.2",
@@ -17,6 +19,7 @@
     "gulp-imagemin": "^6.0.0",
     "gulp-less": "4.0.x",
     "gulp-minify": "^3.1.0",
+    "gulp-mocha": "7.0.2",
     "gulp-plumber": "1.2.x",
     "gulp-postcss": "8.0.x",
     "gulp-posthtml": "^3.0.4",
@@ -28,16 +31,17 @@
     "imagemin-mozjpeg": "^8.0.0",
     "posthtml-modules": "^0.4.2",
     "rollup": "^1.27.14",
+    "rollup-plugin-commonjs": "10.1.0",
     "stylelint": "10.1.x",
     "stylelint-config-htmlacademy": "^0.1.4"
   },
   "scripts": {
-    "eslint": "eslint gulpfile.js \"source/js/**/*.js\"",
     "editorconfig": "editorconfig-cli",
     "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax sass",
-    "test": "npm run eslint && gulp test",
     "build": "gulp build",
-    "start": "gulp start"
+    "start": "gulp start",
+    "eslint": "eslint ./gulpfile.js source/js/",
+    "test": "npm run eslint && gulp test"
   },
   "browserslist": [
     "last 2 versions",

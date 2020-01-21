@@ -8,23 +8,37 @@ const server = require(`browser-sync`).create();
 const csso = require(`gulp-csso`);
 const rename = require(`gulp-rename`);
 const imagemin = require(`gulp-imagemin`);
-const webp = require(`gulp-webp`);
-const svgstore = require(`gulp-svgstore`);
 const posthtml = require(`gulp-posthtml`);
 const modules = require(`posthtml-modules`);
 const del = require(`del`);
-const mozjpeg = require(`imagemin-mozjpeg`);
-// const minify = require(`gulp-minify`);
 const htmlmin = require(`gulp-htmlmin`);
 const rollup = require(`gulp-better-rollup`);
+const mocha = require(`gulp-mocha`); // Добавим установленный gulp-mocha плагин
+const commonjs = require(`rollup-plugin-commonjs`); // Добавим плагин для работы с `commonjs`
 
 gulp.task(`clean`, function () {
   return del(`build`);
 });
 
+gulp.task(`test`, function () {
+  return gulp
+  .src([`source/js/tests/**/*.test.js`])
+  .pipe(rollup({
+    plugins: [
+      commonjs() // Сообщает Rollup, что модули можно загружать из node_modules
+    ]}, `cjs`))// Выходной формат тестов — `CommonJS` модуль
+  .pipe(gulp.dest(`build/test`))
+  .pipe(mocha({
+    reporter: `spec`// Вид в котором я хочу отображать результаты тестирования
+  }));
+});
+
+
 gulp.task(`copy`, function () {
   return gulp.src([
-    `source/fonts/**/*.{woff,woff2}`
+    `source/fonts/**/*.{woff,woff2}`,
+    `source/img/*.*`,
+    `source/*.ico`,
   ], {base: `source`})
 
   .pipe(gulp.dest(`build`));
@@ -45,16 +59,6 @@ gulp.task(`css`, function () {
     .pipe(server.stream());
 });
 
-// gulp.task(`minjs`, function () {
-//   return gulp.src([`source/js/main.js`])
-//   .pipe(plumber())
-//   .pipe(sourcemap.init())
-//   .pipe(minify())
-//   .pipe(sourcemap.write(``))
-//   .pipe(gulp.dest(`build/js`))
-//   .pipe(server.stream());
-// });
-
 gulp.task(`scripts`, function () {
   return gulp.src(`source/js/modules/main.js`)
     .pipe(plumber())
@@ -64,38 +68,14 @@ gulp.task(`scripts`, function () {
     .pipe(gulp.dest(`build/js`));
 });
 
-gulp.task(`imagemin`, function () {
-  return gulp.src(`source/img/**/*.{png,jpg,svg}`)
-  .pipe(imagemin([
-    imagemin.optipng({optimizationLevel: 3}),
-    imagemin.jpegtran({progressive: true}),
-    mozjpeg({quality: 85}),
-    imagemin.svgo()
-  ]))
-  .pipe(gulp.dest(`build/img`));
+gulp.task(`imgOpt`, () => {
+  return gulp.src(`source/img/**/*.{gif,jpeg,jpg,png,svg}`)
+    .pipe(imagemin([
+      imagemin.optipng({optimizationLevel: 3}),
+      imagemin.jpegtran({progressive: true})
+    ]))
+    .pipe(gulp.dest(`img`));
 });
-
-gulp.task(`webp`, function () {
-  return gulp.src(`build/img/**/*.{png,jpg}`)
-  .pipe(webp({quality: 92}))
-  .pipe(gulp.dest(`build/img`));
-});
-
-gulp.task(`sprite`, function () {
-  return gulp.src(`source/img/icon-*.svg`)
-  .pipe(svgstore({
-    inlineSvg: true
-  }))
-
-  .pipe(rename(`sprite.svg`))
-  .pipe(gulp.dest(`build/img`));
-});
-
-gulp.task(`imgOpt`, gulp.series(
-    `imagemin`,
-    `webp`,
-    `sprite`
-));
 
 gulp.task(`html`, function () {
   return gulp.src(`source/*.html`)
@@ -125,8 +105,8 @@ gulp.task(`server`, function () {
   });
 
   gulp.watch(`source/sass/**/*.scss`, gulp.series(`css`));
-  gulp.watch(`source/img/icon-*.svg`, gulp.series(`sprite`, `html`, `refresh`));
-  gulp.watch(`source/img/*.jpg`, gulp.series(`imagemin`, `refresh`));
+  // gulp.watch(`source/img/icon-*.svg`, gulp.series(`sprite`, `html`, `refresh`));
+  // gulp.watch(`source/img/*.jpg`, gulp.series(`imagemin`, `refresh`));
   gulp.watch(`source/components/*.html`, gulp.series(`html`, `refresh`));
   gulp.watch(`source/*.html`, gulp.series(`html`, `refresh`));
   gulp.watch(`source/js/modules/**/*.js`, gulp.series(`scripts`, `refresh`));

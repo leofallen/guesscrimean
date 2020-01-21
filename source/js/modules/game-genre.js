@@ -1,6 +1,43 @@
 import {getDomElement} from "./util";
 
-const template = `<section class="game game--genre">
+export const gameState = {
+  'minutes': 4,
+  'seconds': 59,
+  'mistakes': [],
+};
+
+let interval = 0;
+
+export const timer = () => {
+  let dasharray = 2325;
+  let dashoffset = 0;
+  let dashMove = 7.75;
+
+  interval = setInterval(() => {
+    if (min.textContent === `0` && sec.textContent === `0`) {
+      clearInterval(interval);
+    } else if (sec.textContent === `0`) {
+      gameState.minutes--;
+      gameState.seconds = 59;
+    } else {
+      gameState.seconds--;
+      timeLine.style.strokeDasharray = dasharray + dashMove;
+      timeLine.style.strokeDashoffset = dashoffset - dashMove;
+      dasharray += dashMove;
+      dashoffset -= dashMove;
+    }
+  }, 1000);
+};
+
+export const resetTimer = () => {
+  clearInterval(interval);
+  gameState.minutes = 4;
+  gameState.seconds = 59;
+  timeLine.style.strokeDasharray = 2325;
+  timeLine.style.strokeDashoffset = 0;
+};
+
+const template = (state) => `<section class="game game--genre">
 <header class="game__header">
   <a class="game__back" href="#">
     <span class="visually-hidden">Сыграть ещё раз</span>
@@ -8,21 +45,20 @@ const template = `<section class="game game--genre">
   </a>
 
   <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-    <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(.#blur);
-    transform: rotate(-90deg) scaleY(-1);
-    transform-origin: center">
+    <circle class="timer__line" cx="390" cy="390" r="370" stroke-dasharray="2325"
+    stroke-dashoffset="0">
   </svg>
 
   <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-    <span class="timer__mins">05</span>
+    <span class="timer__mins">${state.minutes}</span>
     <span class="timer__dots">:</span>
-    <span class="timer__secs">00</span>
+    <span class="timer__secs">${state.seconds}</span>
   </div>
 
   <div class="game__mistakes">
-    <div class="wrong"></div>
-    <div class="wrong"></div>
-    <div class="wrong"></div>
+  ${state.mistakes.map(() =>
+    `<div class="wrong"></div>`
+  ).join(``)}
   </div>
 </header>
 
@@ -78,9 +114,12 @@ const template = `<section class="game game--genre">
 </section>
 </section>`;
 
-const gameGenre = getDomElement(template);
+export const gameGenre = getDomElement(template(gameState));
+const sec = gameGenre.querySelector(`.timer__secs`);
+const min = gameGenre.querySelector(`.timer__mins`);
 const playButtons = gameGenre.querySelectorAll(`.track__button`);
 const inputs = gameGenre.querySelectorAll(`.game__input`);
+const timeLine = gameGenre.querySelector(`.timer__line`);
 
 playButtons.forEach((it) => {
   it.addEventListener(`click`, (evt) => {
@@ -91,7 +130,8 @@ playButtons.forEach((it) => {
 const answerCheck = () => {
   const checkedCheckboxses = document.querySelectorAll(`input[type=checkbox]:checked`);
   const answerButton = document.querySelector(`button[type=submit]`);
-  if (checkedCheckboxses.length > 0) {
+  const isChecked = checkedCheckboxses.length > 0;
+  if (isChecked) {
     answerButton.removeAttribute(`disabled`);
   } else {
     answerButton.setAttribute(`disabled`, `true`);
@@ -101,5 +141,3 @@ const answerCheck = () => {
 inputs.forEach((it) => {
   it.addEventListener(`click`, answerCheck);
 });
-
-export default gameGenre;
