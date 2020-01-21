@@ -1,4 +1,3 @@
-import {shuffle} from "./util";
 
 const crimean = [
   {
@@ -27,7 +26,7 @@ const crimean = [
     name: `Милая-девочка`,
     image: `./logo/p17.jpg`,
     src: `./music/p17.mp3`,
-    genre: `ukulele-indi`
+    genre: `lofi_indi`
   },
   {
     artist: `Вне правил`,
@@ -48,7 +47,7 @@ const crimean = [
     name: `Грифон`,
     image: `./logo/edi.jpg`,
     src: `./music/edi.mp3`,
-    genre: `инди-поп`
+    genre: `крымский_инди-поп`
   },
   {
     artist: `Море ясности`,
@@ -62,7 +61,7 @@ const crimean = [
     name: `Вакуум`,
     image: `./logo/rs.jpg`,
     src: `./music/rs.mp3`,
-    genre: `indie`
+    genre: `synth-indie`
   },
   {
     artist: `Акульт`,
@@ -73,4 +72,4 @@ const crimean = [
   },
 ];
 
-export default shuffle(crimean);
+export default crimean;

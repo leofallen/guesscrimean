@@ -11,6 +11,6 @@ const resultSuccessTemplate = `<section class="result">
 
 const resultSuccess = getDomElement(resultSuccessTemplate);
 const replyGame = resultSuccess.querySelector(`.result__replay`);
-replyGame.addEventListener(`click`, resetGame);
+replyGame.oncklick = resetGame;
 
 export default resultSuccess;

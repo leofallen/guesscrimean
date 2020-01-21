@@ -1,18 +1,18 @@
-import {getDomElement, screenLoad, getRandom, shuffle} from "./util";
-import resultSuccess from "./screen-result-success";
+import {getDomElement, getRandom, shuffle, initialState} from "./util";
+// import resultSuccess from "./screen-result-success";
 
 const getScreenArtist = (audio) => {
 
   const music = shuffle(audio);
 
-  // const artist = music.slice(0, 3)[getRandom(0, 2)].artist;
+  const artist = music.slice(0, 3)[getRandom(0, 2)];
 
   const screenArtistTemplate = `
   <section class="game__screen">
     <h2 class="game__title">Кто исполняет эту песню?</h2>
     <div class="game__track">
       <button class="track__button track__button--play track__button--pause" type="button"></button>
-      <audio class="track-audio" src="${music[getRandom(0, 2)].src}" autoplay loop></audio>
+      <audio class="track-audio" src="${artist.src}" autoplay loop></audio>
     </div>
 
     <form class="game__artist">
@@ -47,7 +47,7 @@ const getScreenArtist = (audio) => {
   const artistButtons = screenArtist.querySelectorAll(`.artist__input`);
   const track = screenArtist.querySelector(`.track-audio`);
 
-  playButton.addEventListener(`click`, () => {
+  playButton.onclick = () => {
     if (playButton.classList.contains(`track__button--pause`)) {
       track.pause();
       playButton.classList.toggle(`track__button--pause`);
@@ -56,12 +56,20 @@ const getScreenArtist = (audio) => {
     playButton.classList.toggle(`track__button--pause`);
     track.play();
     return ``;
-  });
+  };
 
   artistButtons.forEach((it) => {
-    it.addEventListener(`click`, () => {
-      screenLoad(resultSuccess);
-    });
+    it.onclick = () => {
+      const gameContainer = document.querySelector(`.game`);
+      if (it.value !== artist.artist) {
+
+        initialState.mistakes.push(1);
+      } else {
+        // console.log(`true`);
+      }
+      gameContainer.innerHTML = ``;
+      gameContainer.appendChild(initialState.levels[getRandom(0, 1)](music));
+    };
   });
 
   return screenArtist;

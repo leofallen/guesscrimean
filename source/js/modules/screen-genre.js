@@ -1,6 +1,4 @@
-import {getDomElement, getRandom, shuffle} from "./util";
-import screenArtist from "./screen-artist";
-
+import {getDomElement, getRandom, shuffle, initialState} from "./util";
 
 const GetScreenGenre = (audio) => {
 
@@ -68,7 +66,7 @@ const GetScreenGenre = (audio) => {
 
   // воспроизведение/остановка треков по клику
   playButtons.forEach((it) => {
-    it.addEventListener(`click`, (evt) => {
+    it.onclick = (evt) => {
       const track = document.querySelector(`.${evt.target.value}`);
 
       if (it.classList.contains(`track__button--pause`)) {
@@ -88,7 +86,7 @@ const GetScreenGenre = (audio) => {
       evt.target.classList.toggle(`track__button--pause`);
       track.play();
       return ``;
-    });
+    };
   });
 
   const checkboxesCheck = () => {
@@ -103,17 +101,19 @@ const GetScreenGenre = (audio) => {
   };
 
   inputs.forEach((it) => {
-    it.addEventListener(`click`, checkboxesCheck);
+    it.onclick = checkboxesCheck;
   });
 
   const answerCheck = () => {
     const checkedCheckboxses = document.querySelectorAll(`input[type=checkbox]:checked`);
     for (let it of checkedCheckboxses) {
       if (it.value !== genre) {
-
+        initialState.mistakes.push(1);
+        console.log(initialState.mistakes);
         return `false`;
       }
     }
+    // console.log(`true`);
     return true;
   };
 
@@ -122,7 +122,7 @@ const GetScreenGenre = (audio) => {
     answerCheck();
     const gameContainer = document.querySelector(`.game`);
     gameContainer.innerHTML = ``;
-    gameContainer.appendChild(screenArtist(music));
+    gameContainer.appendChild(initialState.levels[getRandom(0, 1)](music));
   });
 
   return screenGenre;

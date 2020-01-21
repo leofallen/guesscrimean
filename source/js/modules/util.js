@@ -1,3 +1,5 @@
+import GetScreenGenre from "./screen-genre";
+import getScreenArtist from "./screen-artist";
 
 export const container = document.querySelector(`.app`);
 
@@ -22,6 +24,7 @@ export const initialState = {
   'minutes': 4,
   'seconds': 59,
   'mistakes': [],
+  'levels': [GetScreenGenre, getScreenArtist]
 };
 
 export const resetCheckboxes = () => {
@@ -46,7 +49,3 @@ export const shuffle = function (arr) {
   }
   return arr;
 };
-
-// export const renderScreen = (state) => {
-
-// };

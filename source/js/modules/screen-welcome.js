@@ -1,6 +1,6 @@
 import {getDomElement, container} from "./util.js";
 import screenGenre from "./screen-genre";
-import header from "./header";
+import {header, startTimer} from "./header";
 import music from "./music.js";
 
 const welcomeTemplate = `<section class="welcome">
@@ -18,10 +18,11 @@ const welcomeTemplate = `<section class="welcome">
 const screenWelcome = getDomElement(welcomeTemplate);
 const startButton = screenWelcome.querySelector(`.welcome__button`);
 
-startButton.addEventListener(`click`, () => {
+startButton.onclick = () => {
   container.innerHTML = ``;
   container.appendChild(header);
   container.appendChild(screenGenre(music));
-});
+  startTimer();
+};
 
 export default screenWelcome;
