@@ -1,5 +1,5 @@
-import GetScreenGenre from "./screen-genre";
-import getScreenArtist from "./screen-artist";
+import getScreenGenre from "./game-genre";
+import getScreenArtist from "./game-artist";
 
 export const container = document.querySelector(`.app`);
 
@@ -24,7 +24,7 @@ export const initialState = {
   'minutes': 4,
   'seconds': 59,
   'mistakes': [],
-  'levels': [GetScreenGenre, getScreenArtist]
+  'levels': [getScreenGenre, getScreenArtist]
 };
 
 export const resetCheckboxes = () => {

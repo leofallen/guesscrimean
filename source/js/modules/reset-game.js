@@ -1,5 +1,5 @@
 import {screenLoad} from "./util";
-import screenWelcome from "./screen-welcome";
+import screenWelcome from "./welcome";
 import {resetTimer} from "./header";
 
 const resetGame = () => {

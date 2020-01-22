@@ -70,6 +70,27 @@ const crimean = [
     src: `./music/acult.mp3`,
     genre: `hip-hop`
   },
+  {
+    artist: `Mayday_for-stanley`,
+    name: `The_Third_Facet`,
+    image: `./logo/mfs.jpg`,
+    src: `./music/mfs.mp3`,
+    genre: `post-metal`
+  },
+  {
+    artist: `Thish_cold_normandy`,
+    name: `The_Third_Facet`,
+    image: `./logo/tcn.jpg`,
+    src: `./music/tcn.mp3`,
+    genre: `post-rock`
+  },
+  {
+    artist: `Dharma`,
+    name: `Pink_honey`,
+    image: `./logo/dhrm.jpg`,
+    src: `./music/dhrm.mp3`,
+    genre: `grunge`
+  },
 ];
 
 export default crimean;

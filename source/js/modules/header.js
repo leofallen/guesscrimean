@@ -1,7 +1,6 @@
 import {getDomElement, initialState, screenLoad} from "./util";
 import resetGame from "./reset-game";
 import resulTimeout from "./result-timeout";
-// import timer from "./timer";
 
 const gameState = Object.assign({}, initialState);
 
