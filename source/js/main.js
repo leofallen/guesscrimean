@@ -1,6 +1,6 @@
 import { screenChange, mainContainer, getRandom, counter } from "./data/util";
 import music from "./data/music";
-import { gameScreens, GameOptions } from "./data/game-data";
+import { gameScreens, GameOptions, INITIAL_STATE } from "./data/game-data";
 
 const resetGame = () => {
   screenChange(gameScreens.welcome(onStartGameButtonClick));
@@ -23,9 +23,13 @@ const onAnswerButtonClick = () => {
 const onStartGameButtonClick = () => {
   const header = document.createElement(`div`);
   const game = document.createElement(`div`);
+
   header.classList.add(`header-container`);
   game.classList.add(`game-container`);
-  header.appendChild(gameScreens.header(resetGame));
+
+  const gameState = Object.assign({}, INITIAL_STATE);
+
+  header.appendChild(gameScreens.header(gameState, resetGame));
   game.appendChild(gameScreens.gameGenre(music, (onAnswerButtonClick)));
 
   mainContainer.innerHTML = ``;
