@@ -2,8 +2,6 @@
  * Игровые экраны
  */
 
-@import "../mixins/text";
-
 .game {
   display: flex;
   flex-direction: column;
@@ -17,7 +15,7 @@
 .game__header {
   display: flex;
 
-  margin-bottom: 180px;
+  margin-bottom: 210px;
   width: 100%;
 }
 
@@ -66,13 +64,15 @@
 .game__screen {
   position: relative;
   z-index: 1;
+  top: -49px;
+  left: -14px;
 
   width: 440px;
   text-align: center;
 }
 
 .game__title {
-  @include italic-title;
+  @include italic-title();
 
   margin-bottom: 30px;
 }
@@ -106,7 +106,7 @@
 }
 
 .game__submit {
-  @include italic-text;
+  @include italic-text();
   margin-top: 30px;
   padding: 5px 20px;
 
@@ -127,17 +127,6 @@
   background-size: cover;
 
   animation: fadein 1000ms ease-out;
-  animation-iteration-count: 1;
-}
-
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 .game__artist {

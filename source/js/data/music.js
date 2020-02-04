@@ -91,6 +91,13 @@ const crimean = [
     src: `./music/dhrm.mp3`,
     genre: `grunge`
   },
+  {
+    artist: `Кожаный Олень`,
+    name: `ОРЗ`,
+    image: `./logo/ko.jpg`,
+    src: `./music/ko.mp3`,
+    genre: `ska-punk`
+  }
 ];
 
 export default crimean;

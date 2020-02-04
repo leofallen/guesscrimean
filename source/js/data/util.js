@@ -1,4 +1,4 @@
-export const mainContainer = document.querySelector(`.app`);
+export const mainContainer = document.querySelector(`.main`);
 
 export const getElementFromTemplate = (template, tag = `div`, className = `${tag}`) => {
   const element = document.createElement(tag);
@@ -43,3 +43,4 @@ const makeCounter = () => {
 };
 
 export const counter = makeCounter();
+

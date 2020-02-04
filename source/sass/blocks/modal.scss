@@ -2,8 +2,23 @@
  * Стили для модальных окон
  */
 
-@import "../variables/colors";
-@import "../mixins/text";
+@keyframes bounce {
+  0% {
+    transform: translateY(-2000px);
+  }
+
+  70% {
+    transform: translateY(30px);
+  }
+
+  90% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
 
 .modal {
   position: absolute;
@@ -63,7 +78,7 @@
 }
 
 .modal__button {
-  @include bold-text;
+  @include bold-text();
 
   &:not(:last-of-type) {
     margin-right: 10px;

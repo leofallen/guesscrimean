@@ -26,3 +26,5 @@ export const gameScreens = {
 
 Object.freeze(INITIAL_STATE);
 export { INITIAL_STATE };
+
+export let answers = [];
