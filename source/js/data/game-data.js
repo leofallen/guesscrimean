@@ -11,10 +11,9 @@ export const GameOptions = {
 };
 
 const INITIAL_STATE = {
-  minutes: 5,
-  seconds: 0,
-  mistakes: 0,
-  currentQuestionIndex: 0
+  minutes: '5',
+  seconds: '00',
+  mistakes: '0',
 };
 
 export const gameScreens = {
@@ -27,3 +26,5 @@ export const gameScreens = {
 
 Object.freeze(INITIAL_STATE);
 export { INITIAL_STATE };
+
+export let answers = [];

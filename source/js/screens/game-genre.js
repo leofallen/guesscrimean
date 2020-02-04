@@ -1,8 +1,9 @@
 import { getElementFromTemplate, shuffle, getRandom } from "../data/util";
+import pointsCounter from "../data/points-counter";
 
-const gameGenreTemplate = (music) => `
+const gameGenreTemplate = (music, genre) => `
 <section class="game__screen">
-  <h2 class="game__title">Выберите ${music[getRandom(0, 3)].genre} треки</h2>
+  <h2 class="game__title">Выберите ${genre} треки</h2>
   <form class="game__tracks">
     <div class="track">
       <button class="track__button track__button--play" type="button"></button>
@@ -54,7 +55,8 @@ const gameGenreTemplate = (music) => `
 
 export default (audio, onAnswerClick) => {
   const music = shuffle(audio);
-  const gameGenreScreen = getElementFromTemplate(gameGenreTemplate(music), `section`, `game`);
+  let genre = music[getRandom(0, 3)].genre;
+  const gameGenreScreen = getElementFromTemplate(gameGenreTemplate(music, genre), `section`, `game`);
   const trackButtons = gameGenreScreen.querySelectorAll(`.track__button`);
   const tracks = gameGenreScreen.querySelectorAll(`.track__audio`);
   const answerButton = gameGenreScreen.querySelector(`.game__submit`);
@@ -78,7 +80,6 @@ export default (audio, onAnswerClick) => {
 
   answers.forEach((it) => {
     it.addEventListener(`click`, activateAnswerButton);
-
   });
 
   trackButtons.forEach((it, i) => {
@@ -98,8 +99,21 @@ export default (audio, onAnswerClick) => {
   });
 
   answerButton.addEventListener(`click`, (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
+    const userAnswers = gameGenreScreen.querySelectorAll(`input[type=checkbox]:checked`);
     onAnswerClick();
+    let answer = true;
+    let fast;
+
+    for (let it of userAnswers) {
+      if (it.value !== genre) {
+        answer = false;
+      }
+    }
+
+    if (!answer) {
+      pointsCounter.addMistake();
+    }
   });
 
   return gameGenreScreen;

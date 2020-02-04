@@ -9,8 +9,18 @@
 <body>
 
   <main class="app">
-    <header class="game__header"></header>
-    <section class="game"></section>
+    <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: -1200em;">
+      <filter id="blur">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5"></feGaussianBlur>
+        <feOffset dx="0" dy="0"></feOffset>
+        <feMerge>
+          <feMergeNode></feMergeNode>
+          <feMergeNode in="SourceGraphic"></feMergeNode>
+        </feMerge>
+      </filter>
+    </svg>
+
+    <div class="main"></div>
   </main>
 
   <footer class="footer">

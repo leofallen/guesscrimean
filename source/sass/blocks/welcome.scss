@@ -2,10 +2,6 @@
  * Приветственный экран игры: правила игры и кнопка начала
  */
 
-@import "../variables/colors";
-@import "../mixins/general";
-@import "../mixins/text";
-
 .welcome {
   display: flex;
   align-items: center;
@@ -24,7 +20,7 @@
 .welcome__button {
   position: absolute;
   left: 350px;
-  top: 380px;
+  top: 420px;
 
   padding: 0;
 
@@ -46,9 +42,9 @@
 }
 
 .welcome__rules-title {
-  @include italic-title;
+  @include italic-title();
 
-  margin-top: 250px;
+  margin-top: 210px;
 }
 
 .welcome__text {
@@ -59,6 +55,6 @@
 }
 
 .welcome__rules-list {
-  @include list-unstyled;
+  @include list-unstyled();
   text-align: center;
 }

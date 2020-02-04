@@ -1,4 +1,5 @@
 import { getRandom, getElementFromTemplate, shuffle } from "../data/util";
+import pointsCounter from "../data/points-counter";
 
 const gameArtistTemplate = (music, artist) => `
 <section class="game__screen">
@@ -53,9 +54,17 @@ export default (audio, onArtistButtonClick) => {
     }
   });
 
-  artistButons.forEach((it) => {
-    it.addEventListener(`click`, onArtistButtonClick);
-  });
+  for (let it of artistButons) {
+    it.addEventListener(`click`, () => {
+      onArtistButtonClick();
+      if (artist.artist === it.value) {
+        console.log(`yes`);
+      } else {
+        console.log(`no`);
+        pointsCounter.addMistake();
+      }
+    });
+  };
 
   return gameArtistScreen;
 };

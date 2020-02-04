@@ -12,6 +12,7 @@
 .track__button {
   width: 39px;
   height: 53px;
+  padding: 0;
 
   border: none;
   background-color: transparent;
@@ -36,15 +37,4 @@
   background-size: cover;
 
   animation: fadein 1000ms ease-out;
-  animation-iteration-count: 1;
-}
-
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
